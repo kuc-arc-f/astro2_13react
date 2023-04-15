@@ -10,15 +10,15 @@ console.log("#trpc/index");
 ---
 
 <Layout title="Welcome to Astro.">
-	<main class="container">
+    <main class="container">
         <input type="hidden" id="server_config" value={serverConfig}>
         </input>
-		<h1>Gpt2-React</h1>
-		<a href={`/gpt/create`} class="btn btn-primary">Create</a>
-		<hr />
+        <h1>Gpt2-React</h1>
+        <a href={`/gpt2/create`} class="btn btn-primary">Create</a>
+        <hr />
         <div id="root"></div>		
-		<hr />
-	</main>
+        <hr />
+    </main>
 </Layout>
 <!-- -->
 <style>
@@ -51,7 +51,7 @@ const App = () => {
 					<h3>{item.title}</h3>
 					ID: {item.id}
 					<span class="mx-2">
-						<a href={`/gpt/show/${item.id}`} class="btn btn-sm btn-outline-primary"
+						<a href={`/gpt2/show/${item.id}`} class="btn btn-sm btn-outline-primary"
 						>Show</a>					
 					</span>
 					<hr class="my-2" />

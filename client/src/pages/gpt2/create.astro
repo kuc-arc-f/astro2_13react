@@ -1,14 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-//import LibCrud from '../../lib/LibCrud';
 
 export type Post = {
   id: number;
   name: string;
 };
 //
-//const items: Post[]  = await LibCrud.getList();
-//console.log(items);
 let user_id = ""; // ユーザーIDを保持する変数
 let title = ""; // タスクのタイトルを保持する変数
 let content = ""; // タスクの内容を保持する変数
@@ -18,7 +15,7 @@ let completed = false; // タスクの完了状態を保持する変数
 
 <Layout title="Welcome to Astro.">
 	<main class="container">
-		<a href={`/gpt`}>[ Back ]</a>
+		<a href={`/gpt2`}>[ Back ]</a>
 		<hr />		
 		<h1>Task-Create</h1>
 		<p class="instructions">

@@ -1,7 +1,6 @@
 import LibCrud from '../../lib/LibCrud';
 import LibAuth from '../../lib/LibAuth';
 import LibConfig from '../../lib/LibConfig';
-//import { trpc } from '../../utils/trpc';
 import Crud from './Crud';
 //
 const CrudCreate = {
@@ -89,7 +88,7 @@ console.log(item);
         const result = await this.create();
         console.log("result=", result);
         if(result) {
-          window.location.href = '/gpt';
+          window.location.href = '/gpt2';
         }
       }); 
     } catch (e) {

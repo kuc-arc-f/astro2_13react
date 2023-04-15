@@ -1,6 +1,5 @@
 import LibCrud from '../../lib/LibCrud';
 import LibConfig from '../../lib/LibConfig';
-//import { trpc } from '../../utils/trpc';
 
 const Crud = {
   /**
@@ -12,7 +11,6 @@ const Crud = {
   delete : async function(id: number) : Promise<any>
   {
     try{
-//      let item = {};
       let ret = false;
       const url = import.meta.env.PUBLIC_API_URL;
       console.log("url=", url); 
@@ -21,7 +19,7 @@ const Crud = {
       }
 console.log(item);
       const body = JSON.stringify(item);		
-      const res = await fetch(url + '/tasks/delete', {
+      const res = await fetch(url + '/todos/delete', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},      
         body: body
@@ -61,7 +59,7 @@ console.log("id=", id);
         const res = await this.delete(Number(id));
 console.log(res);
         if(res) {
-          window.location.href = '/gpt';	
+          window.location.href = '/gpt2';	
         }
       }); 
     } catch (e) {
