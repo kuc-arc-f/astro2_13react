@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const url = import.meta.env.PUBLIC_API_URL;
+//console.log("url=", url);
+let serverConfig = {url: url};
+serverConfig = JSON.stringify(serverConfig);
+console.log(serverConfig);
+---
+
+<!-- MarkUp -->
+<Layout title="Welcome to Astro.">
+    <div class="index_wrap container">
+        <input type="hidden" id="server_config" value={serverConfig}>
+        </input>
+        <h3>test2</h3>
+        <div id="root"></div>
+    </div>
+</Layout>
+
+<!-- -->
+<style>
+</style>
+<!-- JS -->
+<script is:inline src="/js/Test.js"></script>
+<script is:inline src="/js/lib/todo/Crud.js"></script>
+<script is:inline src="/js/lib/Common.js"></script>
+<script is:inline type="text/babel" src="/js/components/Child.js"></script>
+<script type="text/babel">
+const prmServer = Common.getServerConfig();
+console.log(prmServer);
+const useState = React.useState;
+const useEffect = React.useEffect;
+//
+const App = () => {
+//    const [state, setState] = useState(0)
+    const [items, setItems] = useState([])
+    //
+    useEffect(async() => {
+        const testItems = await Crud.getList(prmServer);
+        setItems(testItems);
+        console.log(testItems);
+    }, []);  
+    //
+    return (
+        <div>
+            <hr />
+            {items.map((item, index) => {
+                return (
+                <div key={item.id}>ID: {item.id}, Name: {item.title}
+                </div>
+                )
+            })}             
+        </div>
+    )
+}
+const container = document.getElementById("root");
+const root = ReactDOM.createRoot(container);
+root.render(<App />);
+</script>
