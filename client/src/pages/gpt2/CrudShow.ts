@@ -1,7 +1,27 @@
 import LibCrud from '../../lib/LibCrud';
 import LibConfig from '../../lib/LibConfig';
 
-const Crud = {
+const CrudShow = {
+  /**
+   * get:
+   * @param key: any
+   *
+   * @return
+   */      
+  get: async function(id: number) : Promise<any>
+  {
+    try{
+      const url = import.meta.env.PUBLIC_API_URL;
+      let item: any = {};
+      const response = await fetch(url+ "/todos/show/" + String(id));
+      const json = await response.json();
+      item = json;
+//console.log(item);
+      return item;      
+    } catch (e) {
+      console.error(e);
+    }
+  },
   /**
    * delete:
    * @param key: any
@@ -68,6 +88,6 @@ console.log(res);
   } 
 }
 //
-Crud.startProc();
+CrudShow.startProc();
 
-export default Crud;
+export default CrudShow;

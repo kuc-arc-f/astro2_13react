@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import LibCrud from '../../../lib/LibCrud';
+import type { Post } from '../index.astro';
 
 //
 const { id } = Astro.params;
@@ -16,17 +17,25 @@ console.log(item);
 <!-- MarkUp -->
 <Layout title="Welcome to Astro.">
 	<main class="container">
-		<input type="hidden" value={id} id="item_id" />
 		<a class="btn btn-outline-primary" href={`/gpt`}>Back</a>
 		<hr />		
 		<h1>Show</h1>
 		<hr />
 		<p>Id:{id}</p>
-		<hr class="my-1" />
-		title: {item.title}
-		<p>タスクの内容: {item.content}</p>
-		<p>完了状態: {item.completed ? '完了' : '未完了'}</p>	
-		<hr class="my-2" />	
+		<p>更新日時: {item.updated_at}</p>
+		<p>タイトル: {item.title}</p>
+		<p>内容: {item.content}</p>
+		<p>優先度: {item.priority}</p>
+		<p>カテゴリーID: {item.category_id}</p>
+		<p>完了: {item.completed ? "完了" : "未完了"}</p>
+	    <p>タグ1: {item.tag_1}</p>
+		<p>タグ2: {item.tag_2}</p>
+		<p>タグ3: {item.tag_3}</p>
+		<p>タグ4: {item.tag_4}</p>
+		<p>タグ5: {item.tag_5}</p>
+		<p>完了日時: {item.complete_date}</p>
+		<hr />
+		<input type="hidden" value={id} id="item_id" />
 		<button id="btn_delete" class="btn btn-danger">Delete</button>
 	</main>
 </Layout>

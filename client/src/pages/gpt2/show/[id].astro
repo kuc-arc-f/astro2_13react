@@ -1,11 +1,11 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import LibCrud from '../../../lib/LibCrud';
-
+import CrudShow from '../CrudShow';
 //
 const { id } = Astro.params;
 console.log(id);
-let item: any = await LibCrud.get(Number(id));
+let item: any = await CrudShow.get(Number(id));
 console.log(item);
 ---
 

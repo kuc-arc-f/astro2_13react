@@ -49,7 +49,7 @@ console.log(items);
     try{
       const url = import.meta.env.PUBLIC_API_URL;
       let item: any = {};
-      const response = await fetch(url+ "/todos/show/" + String(id));
+      const response = await fetch(url+ "/tasks/show/" + String(id));
       const json = await response.json();
       item = json;
 //console.log(item);

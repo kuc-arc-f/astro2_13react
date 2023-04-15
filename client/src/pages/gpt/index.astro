@@ -1,72 +1,42 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CrudIndex from './CrudIndex';
-const url = import.meta.env.PUBLIC_API_URL;
-//console.log("url=", url);
-let serverConfig = {url: url};
-serverConfig = JSON.stringify(serverConfig);
-console.log(serverConfig);
 
 console.log("#trpc/index");
-//const taskList = await CrudIndex.getList();
+const taskList = await CrudIndex.getList();
 //console.log(taskList);
 ---
 
 <Layout title="Welcome to Astro.">
 	<main class="container">
-        <input type="hidden" id="server_config" value={serverConfig}>
-        </input>
-		<h1>GPT</h1>
+		<a href={`/`}>[ Top ]</a>
+		<hr />		
 		<a href={`/gpt/create`} class="btn btn-primary">Create</a>
 		<hr />
-        <div id="root"></div>		
+		<h1>GPT</h1>
 		<hr />
+		<ul>
+		{
+		taskList.map((item) => (
+			<li><h3>{item.title}</h3>
+				ID: {item.id}
+				<a href={`/gpt/show/${item.id}`} class="btn btn-sm btn-outline-primary"
+				>Show</a>
+				<a href={`/gpt/edit/${item.id}`} class="btn btn-sm btn-outline-primary"
+				>Edit</a>
+				<hr />
+			</li>
+		))
+		}
+		</ul>		
 	</main>
 </Layout>
 <!-- -->
 <style>
 </style>
-<!-- JS -->
-<script is:inline src="/js/Test.js"></script>
-<script is:inline src="/js/lib/todo/Crud.js"></script>
-<script is:inline src="/js/lib/Common.js"></script>
-<script is:inline type="text/babel" src="/js/components/Child.js"></script>
-<script type="text/babel">
-const prmServer = Common.getServerConfig();
-console.log(prmServer);
-const useState = React.useState;
-const useEffect = React.useEffect;
-//
-const App = () => {
-    const [items, setItems] = useState([])
-    //
-    useEffect(async() => {
-        const testItems = await Crud.getList(prmServer);
-        setItems(testItems);
-        console.log(testItems);
-    }, []);  
-    //
-    return (
-        <div>
-            {items.map((item, index) => {
-                return (
-                <div key={item.id}>
-					<h3>{item.title}</h3>
-					ID: {item.id}
-					<span class="mx-2">
-						<a href={`/gpt/show/${item.id}`} class="btn btn-sm btn-outline-primary"
-						>Show</a>					
-					</span>
-					<hr class="my-2" />
-                </div>
-                )
-            })}             
-        </div>
-    )
-}
-const container = document.getElementById("root");
-const root = ReactDOM.createRoot(container);
-root.render(<App />);
-</script>
+<!-- -->
+<script src="./CrudIndex.ts"></script>
+
 <!--
+
  -->

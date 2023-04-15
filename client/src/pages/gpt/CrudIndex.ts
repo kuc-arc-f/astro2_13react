@@ -35,7 +35,7 @@ const CrudIndex = {
       const valid = await LibCrud.validLogin();
 //console.log("valid=", valid);
       if(valid === false) {
-//        alert("NG, valid Login");
+        alert("NG, valid Login");
       }
     } catch (e) {
       console.error(e);
