@@ -31,6 +31,31 @@ const  LibTodo = {
    * @return string|null
    *
    * @throws Exception
+   */  
+  search :async function(search_key: string): Promise<any>
+  {
+    try {
+      const text = `
+       SELECT * FROM todos
+       WHERE title like '%${search_key}%'
+      ORDER BY id DESC LIMIT 100
+      `;
+      const client = LibPg.getClient();
+      const res = await client.query(text);
+      client.end();
+      console.log(res.rows);
+      return res.rows;      
+    } catch (err) {
+      console.error(err);
+      throw new Error('Error , getItems:' +err);
+    }          
+  },    
+  /**
+   *
+   * @param req : any
+   * @return string|null
+   *
+   * @throws Exception
    */      
   getItem :async function(id: number){
     try {
